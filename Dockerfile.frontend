@@ -9,7 +9,7 @@ WORKDIR /app
 COPY src/ui/web/package*.json ./
 
 # Install dependencies
-RUN npm ci
+RUN npm install
 
 # Copy frontend source
 COPY src/ui/web/ ./
