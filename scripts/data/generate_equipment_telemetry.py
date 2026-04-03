@@ -32,7 +32,7 @@ import random
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
 
 async def generate_telemetry_data():

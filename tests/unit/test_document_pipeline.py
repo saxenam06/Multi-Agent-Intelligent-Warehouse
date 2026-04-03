@@ -29,7 +29,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 
 # Load environment variables
-load_dotenv()
+load_dotenv(override=True)
 
 # Add project root to path
 project_root = Path(__file__).parent.parent.parent

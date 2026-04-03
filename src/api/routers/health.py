@@ -53,10 +53,12 @@ async def check_database_health() -> dict:
         import os
         from dotenv import load_dotenv
 
-        load_dotenv()
+        load_dotenv(override=True)
+        db_host = os.getenv("PGHOST", os.getenv("DB_HOST", "localhost"))
+        db_port = os.getenv("PGPORT", os.getenv("DB_PORT", "5435"))
         database_url = os.getenv(
             "DATABASE_URL",
-            f"postgresql://{os.getenv('POSTGRES_USER', 'warehouse')}:{os.getenv('POSTGRES_PASSWORD', '')}@localhost:5435/{os.getenv('POSTGRES_DB', 'warehouse')}",
+            f"postgresql://{os.getenv('POSTGRES_USER', 'warehouse')}:{os.getenv('POSTGRES_PASSWORD', '')}@{db_host}:{db_port}/{os.getenv('POSTGRES_DB', 'warehouse')}",
         )
 
         conn = await asyncpg.connect(database_url)
@@ -115,10 +117,12 @@ async def health_simple():
         import os
         from dotenv import load_dotenv
 
-        load_dotenv()
+        load_dotenv(override=True)
+        db_host = os.getenv("PGHOST", os.getenv("DB_HOST", "localhost"))
+        db_port = os.getenv("PGPORT", os.getenv("DB_PORT", "5435"))
         database_url = os.getenv(
             "DATABASE_URL",
-            f"postgresql://{os.getenv('POSTGRES_USER', 'warehouse')}:{os.getenv('POSTGRES_PASSWORD', '')}@localhost:5435/{os.getenv('POSTGRES_DB', 'warehouse')}",
+            f"postgresql://{os.getenv('POSTGRES_USER', 'warehouse')}:{os.getenv('POSTGRES_PASSWORD', '')}@{db_host}:{db_port}/{os.getenv('POSTGRES_DB', 'warehouse')}",
         )
 
         conn = await asyncpg.connect(database_url)

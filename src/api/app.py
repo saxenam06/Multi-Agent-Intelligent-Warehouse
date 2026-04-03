@@ -23,7 +23,7 @@ import os
 from dotenv import load_dotenv
 
 # Load environment variables
-load_dotenv()
+load_dotenv(override=True)
 from src.api.routers.health import router as health_router
 from src.api.routers.chat import router as chat_router
 from src.api.routers.equipment import router as equipment_router
@@ -306,10 +306,12 @@ async def health_check_simple():
         import os
         from dotenv import load_dotenv
 
-        load_dotenv()
+        load_dotenv(override=True)
+        db_host = os.getenv("PGHOST", os.getenv("DB_HOST", "localhost"))
+        db_port = os.getenv("PGPORT", os.getenv("DB_PORT", "5435"))
         database_url = os.getenv(
             "DATABASE_URL",
-            f"postgresql://{os.getenv('POSTGRES_USER', 'warehouse')}:{os.getenv('POSTGRES_PASSWORD', '')}@localhost:5435/{os.getenv('POSTGRES_DB', 'warehouse')}",
+            f"postgresql://{os.getenv('POSTGRES_USER', 'warehouse')}:{os.getenv('POSTGRES_PASSWORD', '')}@{db_host}:{db_port}/{os.getenv('POSTGRES_DB', 'warehouse')}",
         )
 
         conn = await asyncpg.connect(database_url)

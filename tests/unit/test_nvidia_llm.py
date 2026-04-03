@@ -37,7 +37,7 @@ test_utils = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(test_utils)
 require_env_var = test_utils.require_env_var
 
-load_dotenv()
+load_dotenv(override=True)
 
 @pytest.mark.asyncio
 async def test_nvidia_llm():

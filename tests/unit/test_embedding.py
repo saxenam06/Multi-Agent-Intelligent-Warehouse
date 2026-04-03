@@ -39,7 +39,7 @@ async def test_embedding():
         from dotenv import load_dotenv
         
         # Load environment variables
-        load_dotenv()
+        load_dotenv(override=True)
         
         # Check API key (prefer EMBEDDING_API_KEY, fallback to NVIDIA_API_KEY)
         embedding_api_key = os.getenv("EMBEDDING_API_KEY") or os.getenv("NVIDIA_API_KEY", "")

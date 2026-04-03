@@ -170,7 +170,7 @@ if __name__ == "__main__":
         # Check if API key is set
         import os
         from dotenv import load_dotenv
-        load_dotenv()
+        load_dotenv(override=True)
         
         api_key = os.getenv("NVIDIA_API_KEY")
         if not api_key or api_key == "your_nvidia_api_key_here":
